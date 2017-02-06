@@ -1,0 +1,22 @@
+html, body {
+	height: 100%;
+	font-family: 'Noto Sans', sans-serif;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+#topDiv {
+	margin: 0px;
+	padding: 20px;
+	font-size: 40px;
+	color: white;
+	background-color: #18248e; 
+}
+
+#codeDotOrgAPI {
+}
+
+#map {
+	height: 500px;
+}
