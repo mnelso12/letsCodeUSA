@@ -76,7 +76,6 @@ function parseJSON(json) {
 
 	var i=0;
 	for (var obj in latLng) {
-		console.log(latLng[i].lat);
 		var coord = new google.maps.LatLng(latLng[i].lat, latLng[i].lng);
 		var marker = new google.maps.Marker({
 			position: coord,

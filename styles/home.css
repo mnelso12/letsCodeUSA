@@ -9,9 +9,22 @@ html, body {
 #topDiv {
 	margin: 0px;
 	padding: 20px;
+	background-color: #002C77; 
 	font-size: 40px;
 	color: white;
-	background-color: #18248e; 
+}
+
+#findCodingSchool {
+	height: 800px;
+	background-color: #CC0C2F;
+}
+
+#findCodingSchoolHeader {
+	margin: 0px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-size: 24px;
+	color: white;
 }
 
 #codeDotOrgAPI {
