@@ -9,7 +9,11 @@ html, body {
 #topDiv {
 	margin: 0px;
 	padding: 20px;
-	background-color: #002C77; 
+	/*background-color: #002C77;*/ 
+	background: -webkit-radial-gradient(circle, #002C77, #001a47); /* Safari */
+	background: -o-radial-gradient(circle, #002C77, #001a47); /* Opera 11.6 to 12.0 */
+	background: -moz-radial-gradient(circle, #002C77, #001a47); /* Firefox 3.6 to 15 */
+	background: radial-gradient(circle, #002C77, #001a47); /* Standard syntax */
 	font-size: 40px;
 	color: white;
 }
@@ -17,6 +21,12 @@ html, body {
 #findCodingSchool {
 	height: 800px;
 	background-color: #CC0C2F;
+	/*
+	background: -webkit-radial-gradient(circle, #CC0C2F, #a30925); 
+	background: -o-radial-gradient(circle, #CC0C2F, #a30925); 
+	background: -moz-radial-gradient(circle, #CC0C2F, #a30925);
+	background: radial-gradient(circle, #CC0C2F, #a30925); 
+	*/
 }
 
 #findCodingSchoolHeader {
