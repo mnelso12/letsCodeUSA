@@ -15,19 +15,20 @@ function initMap() {
 		mapTypeId: 'terrain'
 	});
 
-//	Create a <script> tag and set the USGS URL as the source.
-		var script = document.createElement('script');
-//	This example uses a local copy of the GeoJSON stored at
-//	http:earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+	//	Create a <script> tag and set the USGS URL as the source.
+	var script = document.createElement('script');
+	//	This example uses a local copy of the GeoJSON stored at
+	//	http:earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
 
-	//script.src = 'https:developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
-	script.src = 'http://code.org/schools.json';
+	script.src = 'https:developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+	//script.src = 'http://code.org/schools.json';
 	document.getElementsByTagName('head')[0].appendChild(script);
 }
 
 //Loop through the results array and place a marker for each
 //set of coordinates.
-	window.eqfeed_callback = function(results) {
+window.eqfeed_callback = function(results) {
+	/*
 		for (var i = 0; i < results.features.length; i++) {
 			var coords = results.features[i].geometry.coordinates;
 			var latLng = new google.maps.LatLng(coords[1],coords[0]);
@@ -36,7 +37,8 @@ function initMap() {
 				map: map
 			});
 		}
-	}
+		*/
+}
 
 
 
@@ -63,14 +65,28 @@ function createCORSRequest(method, url) {
 
 function parseJSON(json) {
 	var obj = JSON.parse(json);
-	//console.log(json);
-	console.log(obj.schools);
-	/*
+	var latLng = [];
+
 	for (var i=0; i<obj.schools.length; i++) {
-		console.log(obj.schools[i].name);
+		var lat = obj.schools[i].latitude;
+		var lng = obj.schools[i].longitude;
+		var coord = {lat, lng};
+		latLng.push(coord);
 	}
-	*/
+
+	var i=0;
+	for (var obj in latLng) {
+		console.log(latLng[i].lat);
+		var coord = new google.maps.LatLng(latLng[i].lat, latLng[i].lng);
+		var marker = new google.maps.Marker({
+			position: coord,
+			map: map
+		});
+		i+=1;
+	}
 }
+
+
 
 function makeCorsRequest() {
 	//var url = 'http://html5rocks-cors.s3-website-us-east-1.amazonaws.com/index.html';
@@ -84,10 +100,7 @@ function makeCorsRequest() {
 
 	xhr.onload = function() {
 		var text = xhr.responseText;
-		//console.log(text);
 		parseJSON(text);
-		//var title = getTitle(text);
-		//alert('Response from CORS request to ' + url + ': ' + title);
 	};
 
 	xhr.onerror = function() {
