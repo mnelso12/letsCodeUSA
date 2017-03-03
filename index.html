@@ -7,30 +7,51 @@
 			crossorigin="anonymous"></script>
 
 		<link href="styles/home.css" rel="stylesheet">
+
+		<!--Import Google Icon Font-->
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+		<!--Let browser know website is optimized for mobile-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 		<title>Let's Code USA</title>
 		<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 
 	</head>
 
 	<body>
-		<div id="topDiv">
-			<h1>Let's Code USA</h1>
+
+		<!-- Dropdown Structure -->
+		<ul id="dropdown1" class="dropdown-content">
+			<li><a href="#!">Ages 0-4</a></li>
+			<li><a href="#!">Ages 5-8</a></li>
+			<li><a href="#!">Ages 9-12</a></li>
+			<li class="divider"></li>
+			<li><a href="#!">Middle School</a></li>
+			<li><a href="#!">High School</a></li>
+			<li><a href="#!">Young Adult</a></li>
+			<li class="divider"></li>
+			<li><a href="#!">Adult - No Experience</a></li>
+			<li><a href="#!">Adult - Some Experience</a></li>
+			<li><a href="#!">Adult - Advanced</a></li>
+		</ul>
+
+		<nav>
+		<div class="nav-wrapper indigo darken-3">
+			<a href="#" class="brand-logo left">Let's Code</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a href="">About</a></li>
+				<li><a href="">Stats</a></li>
+				<li><a href="">England</a></li>
+				<!-- Dropdown Trigger -->
+				<li><a class="dropdown-button" href="#!" data-activates="dropdown1">Resources<i class="material-icons right">arrow_drop_down</i></a></li>
+			</ul>
 		</div>
-
-		<div id="findCodingSchool">
-			<div id="findCodingSchoolHeader">
-				<h3>find a coding school near you</h3>
-			</div>
-
-			<div id="codeDotOrgAPI">
-				<script src="codeDotOrgAPI.js"></script>
-				<div id="map"></div>
-				<script async defer
-					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdGOjRsL3p7kYvWZjHEVy1bTJwu6zdegQ&callback=initMap">
-				</script>
-			</div>
-
-		</div>
+		</nav>
 
 	</body>
 </html>
