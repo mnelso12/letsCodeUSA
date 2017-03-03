@@ -1,10 +1,16 @@
 html, body {
 	height: 100%;
 	font-family: 'Noto Sans', sans-serif;
-	text-align: center;
 	margin: 0;
 	padding: 0;
 }
+
+
+
+
+
+
+
 
 #topDiv {
 	margin: 0px;
@@ -19,7 +25,7 @@ html, body {
 }
 
 #findCodingSchool {
-	height: 800px;
+	height: 500px;
 	background-color: #CC0C2F;
 	/*
 	background: -webkit-radial-gradient(circle, #CC0C2F, #a30925); 

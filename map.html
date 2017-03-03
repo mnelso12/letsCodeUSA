@@ -5,14 +5,28 @@
 			src="https://code.jquery.com/jquery-3.1.1.min.js"
 			integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 			crossorigin="anonymous"></script>
+		<script src="https://use.fontawesome.com/6973ef5c02.js"></script>
 
+
+		<!--Import Google Icon Font-->
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+		<!--Let browser know website is optimized for mobile-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+		<title>School Search | Let's Code</title>
 		<link href="styles/home.css" rel="stylesheet">
-		<title>Let's Code USA</title>
 		<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+		<script src="scripts/materialize.js"></script>
 
 	</head>
 
 	<body>
+		<!--
 		<div id="topDiv">
 			<h1>Let's Code USA</h1>
 		</div>
@@ -22,15 +36,95 @@
 				<h3>find a coding school near you</h3>
 			</div>
 
+
+		</div>
+		-->
+
+
+		<!-- Dropdown Structure -->
+		<ul id="dropdown1" class="dropdown-content">
+			<li><a href="#!">Ages 0-4</a></li>
+			<li><a href="#!">Ages 5-8</a></li>
+			<li><a href="#!">Ages 9-12</a></li>
+			<li class="divider"></li>
+			<li><a href="#!">Middle School</a></li>
+			<li><a href="#!">High School</a></li>
+			<li><a href="#!">Young Adult</a></li>
+			<li class="divider"></li>
+			<li><a href="#!">Adult - No Experience</a></li>
+			<li><a href="#!">Adult - Some Experience</a></li>
+			<li><a href="#!">Adult - Advanced</a></li>
+		</ul>
+
+		<nav>
+		<div class="nav-wrapper indigo">
+			<a href="#" class="left"><h4 style="padding-left: 10px;">Let's Code</h4></a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="">Stats</a></li>
+				<li><a href="map.html"><i class="fa fa-search" aria-hidden="true"></i> School Search</a></li>
+				<li><a href="">England</a></li>
+				<!-- Dropdown Trigger -->
+				<li><a class="dropdown-button" href="#!" data-activates="dropdown1">Resources<i class="material-icons right">arrow_drop_down</i></a></li>
+			</ul>
+		</div>
+		</nav>
+
+
+
+
+		<div class="row indigo lighten-2">
+			<form class="col s12">
+				<div class="input-field">
+					<input id="search" placeholder="search by city, school, or address" type="search" required>
+					<label class="label-icon" for="search"><i class="fa fa-search" aria-hidden="true"></i></label>
+					<i class="material-icons">close</i>
+				</div>
+			</form>
+		</div>
+
+
+
+
 			<div id="codeDotOrgAPI">
-				<script src="codeDotOrgAPI.js"></script>
-				<div id="map"></div>
+				<script src="scripts/codeDotOrgAPI.js"></script>
+				<div id="map" style="width: 100%"></div>
 				<script async defer
 					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdGOjRsL3p7kYvWZjHEVy1bTJwu6zdegQ&callback=initMap">
 				</script>
 			</div>
 
+
+
+
+
+
+			
+		<footer class="page-footer indigo">
+		<div class="container">
+			<div class="row">
+				<div class="col l6 s12">
+					<h5 class="white-text">You can code too!</h5>
+					<p class="grey-text text-lighten-4">At Let's Code, we fully believe that every American benefits from the ability to code. The resources are out there. All you need is passion, and we'll drive you in the right direction.</p>
+				</div>
+				<div class="col l4 offset-l2 s12">
+					<p class="white-text">This site was built with:</p>
+					<ul>
+						<li><a class="grey-text text-lighten-3" href="http://fontawesome.io/">Font Awesome</a></li>
+						<li><a class="grey-text text-lighten-3" href="http://materializecss.com/">Materialize</a></li>
+						<li><a class="grey-text text-lighten-3" href="https://jquery.com/">jQuery</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
+		<div class="footer-copyright">
+			<div class="container">
+				<a class="gray-text text-lighten-2" href="https://www.linkedin.com/in/madelyn-nelson-4447a1100/"> © 2017 Madelyn Nelson  | All Rights Reserved </a>
+				<a class="grey-text text-lighten-4 right" href="#!">Suggestions? Contact Us!</a>
+			</div>
+		</div>
+		</footer>
+
 
 	</body>
 </html>
