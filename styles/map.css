@@ -1,0 +1,10 @@
+.row, .col {
+	padding: 0 !important;
+}
+
+#codeDotOrgAPI {
+}
+
+#map {
+	height: 500px;
+}

@@ -1,0 +1,18 @@
+html, body {
+	height: 100%;
+	font-family: 'Noto Sans', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+.some-padding {
+	padding: 20px;
+}
+
+.lots-padding {
+	padding: 40px;
+}
+
+.lots-padding-top {
+	padding-top: 40px;
+}
