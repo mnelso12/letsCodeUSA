@@ -2,3 +2,16 @@ html, body {
 	margin: 0px;
 	padding: 0px;
 }
+
+.resource p {
+	color: #424242; /* grey-text text-darken-3 */
+}
+
+.resource h5 {
+	color: #3f51b5 /* indigo */
+}
+
+.resource h3 {
+	color: black; /* black */
+}
+
