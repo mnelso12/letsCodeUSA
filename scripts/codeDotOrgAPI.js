@@ -1,19 +1,33 @@
+// global variables
+var map;
+var infowindow;
+var schoolData = [];
+
+
 $( document ).ready(function() {
 	console.log( "ready!" );
 	loadCodeSchools();
+	//searchForAddress("South Bend, IN");
 });
 
 function loadCodeSchools() {
 	makeCorsRequest();
 }
 
-var map;
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 4,
 		center: new google.maps.LatLng(36,-97),
 		mapTypeId: 'terrain'
 	});
+
+	/*
+	var homeLatLng = new google.maps.LatLng(51.476706,0);
+	infowindow =  new google.maps.InfoWindow({
+		content: 'Hello World!',
+		map: map
+	});
+	*/
 
 	//	Create a <script> tag and set the USGS URL as the source.
 	var script = document.createElement('script');
@@ -43,6 +57,60 @@ window.eqfeed_callback = function(results) {
 
 
 
+// geocoding from Google Maps Geocoding API
+$("#searchForm").submit(function() {
+	pressedSearch();
+	return false;
+});
+
+function pressedSearch() {
+	console.log($("#search").val());
+	searchForAddress($("#search").val());
+}
+
+function searchForAddress(addressString) {
+	var parsedAddress = parseAddress(addressString);
+	makeCorsRequestForAddress(parsedAddress);
+}
+
+function parseAddress(addressString) {
+	var replaced = addressString.split(' ').join('+');
+	return replaced;
+}
+
+function makeCorsRequestForAddress(address) {
+	var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyA2xsfPL2vL3sihxxixNy6qX0bXkNZEyTU";
+
+	var xhr = createCORSRequest('GET', url);
+	if (!xhr) {
+		alert('CORS not supported');
+		return;
+	}
+
+	xhr.onload = function() {
+		var text = xhr.responseText;
+		var json = JSON.parse(text);
+		// schoolData = json; // TODO gotta make this into an array of location data
+
+		var marker = new google.maps.Marker({
+			map: map,
+			position: json["results"][0].geometry.location
+		});
+
+		map.setZoom(10);
+		map.panTo(marker.position);
+	};
+
+	xhr.onerror = function() {
+		alert('Woops, there was an error making the request.');
+	};
+
+	xhr.send();
+}
+
+
+
+
 
 
 
@@ -63,32 +131,59 @@ function createCORSRequest(method, url) {
 	return xhr;
 }
 
-function parseJSON(json) {
+function makeSchoolDataArray(json) {
 	var obj = JSON.parse(json);
-	var latLng = [];
 
 	for (var i=0; i<obj.schools.length; i++) {
-		var lat = obj.schools[i].latitude;
-		var lng = obj.schools[i].longitude;
-		var coord = {lat, lng};
-		latLng.push(coord);
-	}
 
+		//var lat = obj.schools[i].latitude;
+		//var lng = obj.schools[i].longitude;
+		//var coord = {lat, lng};
+		schoolData.push(obj.schools[i]);
+	}
+	console.log(schoolData);
+}
+
+
+function graphPoints() {
 	var i=0;
-	for (var obj in latLng) {
-		var coord = new google.maps.LatLng(latLng[i].lat, latLng[i].lng);
+	for (var obj in schoolData) {
+		var coord = new google.maps.LatLng(schoolData[i].latitude, schoolData[i].longitude);
+		//var coord = new google.maps.LatLng(schoolData[i].lat, schoolData[i].lng);
 		var marker = new google.maps.Marker({
 			position: coord,
 			map: map
 		});
+
+		var infoWindow =  new google.maps.InfoWindow({
+			content: '' 
+		});
+
+		// add an event listener for this marker
+		bindInfoWindow(marker, map, infoWindow, "<h5>" + schoolData[i].name + "</h5>" + "<p>" + schoolData[i].street + " " + schoolData[i].city + ", " + schoolData[i].state + " " + schoolData[i].zip + "</p>" + "<p> Format: " + schoolData[i].format +  "</p>");
+
 		i+=1;
 	}
 }
 
 
+function bindInfoWindow(marker, map, infowindow, html) { 
+	google.maps.event.addListener(marker, 'mouseover', function() { 
+		infowindow.setContent(html); 
+		infowindow.open(map, marker); 
+	}); 
+
+	google.maps.event.addListener(marker, 'mouseout', function() { 
+		infowindow.setContent(html); 
+		infowindow.close(); 
+	}); 
+} 
+
+
+
+
 
 function makeCorsRequest() {
-	//var url = 'http://html5rocks-cors.s3-website-us-east-1.amazonaws.com/index.html';
 	var url = "http://code.org/schools.json";
 
 	var xhr = createCORSRequest('GET', url);
@@ -99,7 +194,8 @@ function makeCorsRequest() {
 
 	xhr.onload = function() {
 		var text = xhr.responseText;
-		parseJSON(text);
+		makeSchoolDataArray(text);
+		graphPoints();
 	};
 
 	xhr.onerror = function() {
