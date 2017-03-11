@@ -158,9 +158,43 @@ function graphPoints() {
 		var infoWindow =  new google.maps.InfoWindow({
 			content: '' 
 		});
+;
+		var name = schoolData[i].name;
+		var street = schoolData[i].street;
+		var city = schoolData[i].city;
+		var state = schoolData[i].state;
+		var zip = schoolData[i].zip;
+		var format = schoolData[i].format;
+		var format_desc = schoolData[i].format_description;
+		var levels = schoolData[i].levels.join(", ");
+		var languages = schoolData[i].languages.join(", ");
 
+		if (!levels) {
+			levels = "(none)"	
+		}
+		if (!languages) {
+			languages = "none"	
+		}
+		if (!street) {
+			street = ""	
+		}
+		if (!city) {
+			city = ""	
+		}
+		if (!state) {
+			state = ""	
+		}
+		if (!zip) {
+			zip = ""	
+		}
+;
+		var html = "<h5>" + name + "</h5>"
+ 				+ "<p>" + street + " " + city + ", " + state + " " + zip + "</p>" 
+				+ "<p>Format: " + format + " - " + format_desc + "</p>"
+				+ "<p>Levels: " + levels + "</p>"
+				+ "<p>Languages: " + languages + "</p>";
 		// add an event listener for this marker
-		bindInfoWindow(marker, map, infoWindow, "<h5>" + schoolData[i].name + "</h5>" + "<p>" + schoolData[i].street + " " + schoolData[i].city + ", " + schoolData[i].state + " " + schoolData[i].zip + "</p>" + "<p> Format: " + schoolData[i].format +  "</p>");
+		bindInfoWindow(marker, map, infoWindow, html);
 
 		i+=1;
 	}
