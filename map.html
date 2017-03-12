@@ -73,9 +73,9 @@
 
 
 
-		<div class="row indigo lighten-2" style="padding: 0px; margin: 0px;">
-			<form class="col s12">
-				<div class="input-field">
+		<div class="row indigo lighten-1" style="padding: 0px; margin: 0px;">
+			<form class="col s12" id="searchForm" onSubmit="return false;">
+				<div class="input-field white-text">
 					<input id="search" placeholder="search by city, school, or address" type="search" required>
 					<label class="label-icon" for="search"><i class="fa fa-search" aria-hidden="true"></i></label>
 					<i class="material-icons">close</i>
@@ -86,20 +86,93 @@
 
 
 
-			<div id="codeDotOrgAPI">
+		<div class="row indigo lighten-3" style="margin-bottom: 0px;">
+			<div class="col s4">
+				<div style="margin-top: 40px;" class="container">
+					<h4 class="indigo-text">Filters</h4>
+					<div class="row white">
+						<div class="col s12">
+							<p>Class Format</p>
+						</div>
+						<div class="input-field col s12">
+							<select>
+								<option value="">Any</option>
+								<option value="1">In School</option>
+								<option value="2">Out of School</option>
+							</select>
+							<!--<label>Materialize Select</label>-->
+						</div>
+					</div>
+					<div class="row white">
+						<div class="col s12">
+							<p>Language(s)</p>
+						</div>
+						<div class="input-field col s12">
+							<select multiple>
+								<option value="0">Code.org Code Studio</option>
+								<option value="1">Alice</option>
+								<option value="2">Arduino</option>
+								<option value="3">C++</option>
+								<option value="4">C#</option>
+								<option value="4">CSS</option>
+								<option value="4">HTML</option>
+								<option value="4">Java</option>
+								<option value="4">JavaScript</option>
+								<option value="4">Kodu</option>
+								<option value="4">Logo</option>
+								<option value="4">Mobile Apps</option>
+								<option value="4">Perl</option>
+								<option value="4">PHP</option>
+								<option value="4">Processing</option>
+								<option value="4">Python</option>
+								<option value="4">Racket</option>
+								<option value="4">Ruby</option>
+								<option value="4">Ruby on Rails</option>
+								<option value="4">Scratch</option>
+								<option value="4">Scheme</option>
+								<option value="4">StarLogo Nova</option>
+								<option value="4">WeScheme</option>
+							</select>
+							<!--<label>Materialize Select</label>-->
+						</div>
+					</div>
+					<div class="row white">
+						<div class="col s12">
+							<p>Public/Private</p>
+						</div>
+						<div class="input-field col s12">
+							<select>
+								<option value="">Any</option>
+								<option value="1">Public / Free</option>
+								<option value="2">Private / Tuition</option>
+							</select>
+							<!--<label>Materialize Select</label>-->
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div id="codeDotOrgAPI" class="col s7">
 				<script src="scripts/codeDotOrgAPI.js"></script>
-				<div id="map" style="width: 100%"></div>
+				<div id="map" style="margin-top: 40px;">
+				</div>
 				<script async defer
 					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdGOjRsL3p7kYvWZjHEVy1bTJwu6zdegQ&callback=initMap">
 				</script>
 			</div>
 
+			<div class="col s7 offset-s4 center container">
+				<p>Map data graciously provided by <a href="https://code.org" class="indigo-text" style="padding-right: 40px;">Code.org</a>Add your coding class to the map <a href="https://code.org/schools/new" class="indigo-text">here</a></p>
+			</div>
+		</div>
 
 
 
 
 
-			
+
+
 		<footer class="page-footer indigo">
 		<div class="container">
 			<div class="row">

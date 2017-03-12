@@ -1,13 +1,10 @@
 // global variables
 var map;
-var infowindow;
 var schoolData = [];
 
 
 $( document ).ready(function() {
-	console.log( "ready!" );
 	loadCodeSchools();
-	//searchForAddress("South Bend, IN");
 });
 
 function loadCodeSchools() {
@@ -90,15 +87,19 @@ function makeCorsRequestForAddress(address) {
 	xhr.onload = function() {
 		var text = xhr.responseText;
 		var json = JSON.parse(text);
-		// schoolData = json; // TODO gotta make this into an array of location data
 
+		/* // Uncomment below if you want a point to appear on this searched-for location
+		 *
 		var marker = new google.maps.Marker({
 			map: map,
 			position: json["results"][0].geometry.location
 		});
 
-		map.setZoom(10);
 		map.panTo(marker.position);
+		*/
+
+		map.setZoom(10);
+		map.panTo(json["results"][0].geometry.location);
 	};
 
 	xhr.onerror = function() {
