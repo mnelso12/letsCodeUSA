@@ -1,5 +1,6 @@
 // global variables
 var map;
+var markers = [];
 var schoolData = [];
 
 
@@ -55,6 +56,10 @@ window.eqfeed_callback = function(results) {
 
 
 // geocoding from Google Maps Geocoding API
+$("#searchButton").click(function(){
+	pressedSearch();
+});
+
 $("#searchForm").submit(function() {
 	pressedSearch();
 	return false;
@@ -63,6 +68,8 @@ $("#searchForm").submit(function() {
 function pressedSearch() {
 	console.log($("#search").val());
 	searchForAddress($("#search").val());
+	var filteredPoints = filterPoints();
+	graphPoints(filteredPoints);
 }
 
 function searchForAddress(addressString) {
@@ -136,39 +143,141 @@ function makeSchoolDataArray(json) {
 	var obj = JSON.parse(json);
 
 	for (var i=0; i<obj.schools.length; i++) {
-
-		//var lat = obj.schools[i].latitude;
-		//var lng = obj.schools[i].longitude;
-		//var coord = {lat, lng};
 		schoolData.push(obj.schools[i]);
 	}
-	console.log(schoolData);
+	//console.log(schoolData);
+}
+
+function getFilters() {
+	var classFormat = $("#classFormat").val();
+	var publicPrivate = $("#publicPrivate").val();
+	var level = $("#level").val();
+	var language = $("#language").val();
+
+	var formats = ["any", "In School", "Out of School"];
+	var publicPrivateArr = ["any", "Public", "Private"];
+	var levels = ["any", "Preschool", "Elementary", "Middle School", "High School", "College", "Vocational"];
+	var languages = ["any", "Code.org Code Studio", "Alice", "Arduino","C++", "C#", "CSS", "HTML", "Java", "JavaScript", "Kodu", "Logo", "Mobile Apps", "Perl", "PHP", "Processing", "Python", "Racket", "Ruby", "Ruby on Rails", "Scratch", "Scheme", "StarLogo Nova", "WeScheme"];
+
+	var selectedLevels = [];
+	for (l in level) {
+		selectedLevels.push(levels[parseInt(level[l])]);
+	}
+
+	var selectedLanguages = [];
+	for (l in language) {
+		selectedLanguages.push(languages[parseInt(language[l])]);
+	}
+
+	var selectedFormat = formats[classFormat];
+	var selectedPublicPrivate = publicPrivateArr[publicPrivate];
+
+	return [selectedFormat, selectedPublicPrivate, selectedLevels, selectedLanguages];
 }
 
 
-function graphPoints() {
-	var i=0;
+
+function filterPoints() {
+	var filters = getFilters();
+
+	var filterFormat = filters[0];
+	var filterMoney = filters[1];
+
+	var filteredPoints = []; // filtered schoolData
+
 	for (var obj in schoolData) {
-		var coord = new google.maps.LatLng(schoolData[i].latitude, schoolData[i].longitude);
-		//var coord = new google.maps.LatLng(schoolData[i].lat, schoolData[i].lng);
+		var school = schoolData[obj];
+
+		var format = school.format;
+		var money_needed = school.money_needed;
+
+		
+		// filter for format 
+		if (filterFormat == "Out of School") {
+			if (format == "In School") {
+				continue;
+			}
+		}
+		else if (filterFormat == "In School") {
+			if (format == "Out of School") {
+				continue;
+			}
+		}
+
+		// filter for money_needed (public/private)
+		if (filterMoney == "Public") {
+			if (money_needed === true) {
+				continue;
+			}
+		}
+		else if (filterMoney == "Private") {
+			if (money_needed == false) {
+				continue;
+			}
+		}
+
+
+
+		// if made it this far, this point matches all the filters
+		filteredPoints.push(school);
+	}
+	return filteredPoints;
+}
+
+
+
+
+
+
+
+// Sets the map on all markers in the array.
+function setMapOnAll(map) {
+	for (var i = 0; i < markers.length; i++) {
+		markers[i].setMap(map);
+	}
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+	setMapOnAll(null);
+}
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+	clearMarkers();
+	markers = [];
+}
+
+
+function graphPoints(filteredPoints) {
+	console.log(filterPoints());
+	// clear graph markers
+	deleteMarkers();
+
+	var i=0;
+	for (var obj in filteredPoints) {
+		var coord = new google.maps.LatLng(filteredPoints[i].latitude, filteredPoints[i].longitude);
+
 		var marker = new google.maps.Marker({
 			position: coord,
 			map: map
 		});
 
+		markers.push(marker);
+
 		var infoWindow =  new google.maps.InfoWindow({
 			content: '' 
 		});
 ;
-		var name = schoolData[i].name;
-		var street = schoolData[i].street;
-		var city = schoolData[i].city;
-		var state = schoolData[i].state;
-		var zip = schoolData[i].zip;
-		var format = schoolData[i].format;
-		var format_desc = schoolData[i].format_description;
-		var levels = schoolData[i].levels.join(", ");
-		var languages = schoolData[i].languages.join(", ");
+		var name = filteredPoints[i].name;
+		var street = filteredPoints[i].street;
+		var city = filteredPoints[i].city;
+		var state = filteredPoints[i].state;
+		var zip = filteredPoints[i].zip;
+		var format = filteredPoints[i].format;
+		var format_desc = filteredPoints[i].format_description;
+		var levels = filteredPoints[i].levels.join(", ");
+		var languages = filteredPoints[i].languages.join(", ");
 
 		if (!levels) {
 			levels = "(none)"	
@@ -230,7 +339,7 @@ function makeCorsRequest() {
 	xhr.onload = function() {
 		var text = xhr.responseText;
 		makeSchoolDataArray(text);
-		graphPoints();
+		//graphPoints();
 	};
 
 	xhr.onerror = function() {
