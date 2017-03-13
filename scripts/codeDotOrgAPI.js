@@ -18,40 +18,7 @@ function initMap() {
 		center: new google.maps.LatLng(36,-97),
 		mapTypeId: 'terrain'
 	});
-
-	/*
-	var homeLatLng = new google.maps.LatLng(51.476706,0);
-	infowindow =  new google.maps.InfoWindow({
-		content: 'Hello World!',
-		map: map
-	});
-	*/
-
-	//	Create a <script> tag and set the USGS URL as the source.
-	var script = document.createElement('script');
-	//	This example uses a local copy of the GeoJSON stored at
-	//	http:earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-
-	script.src = 'https:developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
-	//script.src = 'http://code.org/schools.json';
-	document.getElementsByTagName('head')[0].appendChild(script);
 }
-
-//Loop through the results array and place a marker for each
-//set of coordinates.
-window.eqfeed_callback = function(results) {
-	/*
-		for (var i = 0; i < results.features.length; i++) {
-			var coords = results.features[i].geometry.coordinates;
-			var latLng = new google.maps.LatLng(coords[1],coords[0]);
-			var marker = new google.maps.Marker({
-				position: latLng,
-				map: map
-			});
-		}
-		*/
-}
-
 
 
 
@@ -161,12 +128,16 @@ function getFilters() {
 
 	var selectedLevels = [];
 	for (l in level) {
-		selectedLevels.push(levels[parseInt(level[l])]);
+		//if (level[l] != "0") { // don't care about "any"
+			selectedLevels.push(levels[parseInt(level[l])]);
+		//}
 	}
 
 	var selectedLanguages = [];
 	for (l in language) {
-		selectedLanguages.push(languages[parseInt(language[l])]);
+		//if (language[l] != "0") { // don't care about "any"
+			selectedLanguages.push(languages[parseInt(language[l])]);
+		//}
 	}
 
 	var selectedFormat = formats[classFormat];
@@ -182,44 +153,69 @@ function filterPoints() {
 
 	var filterFormat = filters[0];
 	var filterMoney = filters[1];
+	var filterLevels = filters[2];
+	var filterLanguages = filters[2];
 
 	var filteredPoints = []; // filtered schoolData
+
 
 	for (var obj in schoolData) {
 		var school = schoolData[obj];
 
 		var format = school.format;
 		var money_needed = school.money_needed;
+		var levels = school.levels;
+		var languages = school.languages;
 
+		var isGoodPoint = true;
 		
 		// filter for format 
 		if (filterFormat == "Out of School") {
 			if (format == "In School") {
-				continue;
+				isGoodPoint = false;
 			}
 		}
 		else if (filterFormat == "In School") {
 			if (format == "Out of School") {
-				continue;
+				isGoodPoint = false;
 			}
 		}
 
 		// filter for money_needed (public/private)
 		if (filterMoney == "Public") {
 			if (money_needed === true) {
-				continue;
+				isGoodPoint = false;
 			}
 		}
 		else if (filterMoney == "Private") {
 			if (money_needed == false) {
-				continue;
+				isGoodPoint = false;
 			}
 		}
 
-
-
-		// if made it this far, this point matches all the filters
-		filteredPoints.push(school);
+		// filter for levels
+		if (filterLevels.length > 0) {
+			for (l of filterLevels) {
+				console.log(levels.indexOf(l));
+				if (levels.indexOf(l) < 0) {
+					isGoodPoint = false;
+				}
+			}
+		}
+/*
+		// filter for languages
+		if (filterLanguages.length > 0) {
+			for (l of filterLanguages) {
+				console.log(languages.indexOf(l));
+				if (languages.indexOf(l) < 0) {
+					isGoodPoint = false;
+				}
+			}
+		}
+*/
+		if (isGoodPoint == true) {
+			filteredPoints.push(school);
+		}
 	}
 	return filteredPoints;
 }
