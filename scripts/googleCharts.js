@@ -4,9 +4,9 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
 	var factor = 1000000;
 
-	var cs_style="stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2"
-	var college_style="stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2"
-	var high_school_style ="stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2"
+	var cs_style="stroke-color: #00796b; stroke-opacity: 1.0; stroke-width: 8; fill-color: #4db6ac; fill-opacity: 1.0"
+	var college_style="stroke-color: #871B47; stroke-opacity: 1.0; stroke-width: 8; fill-color: #BC5679; fill-opacity: 1.0"
+	var high_school_style ="stroke-color: #3f51b5; stroke-opacity: 1.0; stroke-width: 8; fill-color: #7986cb; fill-opacity: 1.0"
 
 	var data = google.visualization.arrayToDataTable([
 		['', 'Average Starting Salaries', { role: 'style' }],
