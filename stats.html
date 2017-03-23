@@ -6,8 +6,12 @@
 			integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 			crossorigin="anonymous"></script>
 		<script src="https://use.fontawesome.com/6973ef5c02.js"></script>
+		<link rel="stylesheet" href="styles/font-awesome-animation.min.css">
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<script type="text/javascript" src="scripts/googleCharts.js"></script>
+
+		<!-- Roboto Font - Google Font for Charts -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 
 		<!--Import Google Icon Font-->
@@ -60,6 +64,27 @@
 		</nav>
 
 
+		<div class="section white lighten-5">
+			<div class="row container">
+				<h5>
+					The ability to code is extremely powerful. 
+					Similar to reading and writing, coding opens one's mind to a new world of possibility and opportunity. 
+				</h5>
+				<h5>
+					A career in computing, often not requiring a college degree, can liberate a family from poverty.
+				</h5>
+				<br>
+				<h5>
+					Let's use code to <span class="indigo-text">amplify the voices of the unheard.</span> 
+				</h5>
+			</div>
+		</div>
+
+		<!--
+			rise between social classes / break the barriers of social class
+			empower the weak / unheard
+			There is an enormous amount of power in the ability to code - enough to lift someone from poverty, and amplify the voices of the unheard.
+		-->
 
 
 		<div class="section white lots-padding-top">
@@ -69,9 +94,10 @@
 					<a href="#jobs">
 						<div class="col m4 s12 center faa-parent animated-hover">
 							<i class="fa fa-money fa-5x 
-								faa-shake
+								faa-pulse
 								teal-text text-darken-1" aria-hidden="true"></i>
 							<h4 class="black-text">Jobs</h4>
+							<p class="black-text">The opportunities are skyrocketing<p>
 						</div>
 					</a>
 					</li>
@@ -82,6 +108,7 @@
 								faa-bounce
 								" aria-hidden="true"></i>
 							<h4 class="black-text">Diversity</h4>
+							<p class="black-text">Diverse perspectives help everyone<p>
 						</div>
 					</a>
 					</li>
@@ -92,6 +119,7 @@
 
 								" aria-hidden="true"></i>
 							<h4 class="black-text">Interest</h4>
+							<p class="black-text">Enough with the stigma, coding is fun!<p>
 						</div>
 					</a>
 					</li>
@@ -101,17 +129,23 @@
 
 
 
+		<!-- Jobs -->
 		<div id="jobs">
 
-			<div class="section cyan lighten-5">
+			<div class="section teal lighten-5">
 				<div class="row container center">
+					<h3>There's plenty for everyone</h3>
+					<br>
 					<h1 class="indigo-text" style="font-size: 80px;">800,000+</h1>
 					<h4 class=""> open computing jobs in 2024 </h4>
 					<br>
 					<!--<i class="fa fa-users fa-3x" aria-hidden="true"></i>-->
 					<i class="fa fa-line-chart fa-3x pink-text text-darken-3" aria-hidden="true"></i>
 					<p>
-					According to the <a href="TODO" class="indigo-text">Bureau of Labor and Statistics</a>, the number of open jobs in computing are projected to rise by 12.5% by 2024, double the rate of all other jobs. That's more than the population of Alaska. 
+					<!--
+					According to the <a href="TODO" class="indigo-text">Bureau of Labor and Statistics</a>, the number of open jobs in computing are projected to rise by 12.5% by 2024, double the rate of all other jobs. That's more opportunities than the entire population of Alaska. 
+					-->
+					According to the <a href="TODO" class="indigo-text">Bureau of Labor and Statistics</a>, the number of open jobs in computing are projected to rise by 12.5% by 2024, double the average rate. That's more opportunities than the entire population of Alaska. 
 					</p>
 				</div>
 			</div>
@@ -122,16 +156,140 @@
 
 			<div class="section indigo lighten-4">
 				<div class="row container">
+					<h3 class="center">Computing jobs are great jobs</h3>
+					<p>Jobs in the computing field are consistently ranked among the highest paying in the United States.
+					The average software engineer makes <span class="indigo-text">$98,260</span> a year.</p>
+					<br>
 					<h4>Average Starting Salary</h4>
-					<p style="padding: 0px; margin: 0px;"><a href="TODO" class="indigo-text">Source Data</a></p>
 					<div id="barchart_material" style="width: 100%; height: 250px; padding-top: 0px; margin-top: 0px;"></div>
 					<h4>Average Lifetime Earnings</h4>
-					<p style="padding: 0px; margin: 0px;"><a href="TODO" class="indigo-text">Source Data</a></p>
 					<div id="lifetime_chart" style="width: 100%; height: 250px;"></div>
 				</div>
 			</div>
 
 
+
+		</div>
+
+
+		<!-- Diversity -->
+		<div id="diversity">
+
+			<div class="section teal lighten-4">
+				<div class="row container">
+					<div class="col s12 center">
+						<h3>There's a serious lack of diversity</h3>
+						<p>Diverse perspectives improve all the things!<p>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="section yellow lighten-4">
+				<div class="row container">
+					<br>
+					<div class="col s12 m6 center">
+						<div id="chart_wrapper" style="
+							position: relative;
+							padding-bottom: 100%;
+							height: 0;
+							overflow:hidden;
+							">
+							<div id="gender_donut" style="
+								position: absolute;
+								top: 0;
+								left: 0;
+								width:100%;
+								height:100%	
+								">
+							</div>
+						</div>
+					</div>
+	
+
+					<div class="col s12 m6 container">
+						<h2>Gender Gap</h2>
+						<p style="padding: 0px; margin: 0px;"><a href="https://www.ncwit.org/blog/did-you-know-demographics-technical-women" class="indigo-text">Source Data</a></p>
+						<h5>Women represent 51% of all professional occupations in the United States, but only <span style="font-style: bold;" class="indigo-text">26%</span> of computing-related occupations.</h5>
+						<br>
+						<h5>
+							<span style="font-style: bold;" class="indigo-text"> 85%</span> of all consumer purchases are made by women. It's time to see more women on the other side of the internet.</h5>
+
+						</p>
+					</div>
+				</div>
+				<div class="row container">
+					<div class="col s12">
+						<p>Find these numbers problematic? Here are some organizations that have committed to bridging the gender gap in tech. <span class="indigo-text">(Add your organization to the list here)</span></p>
+					</div>
+					<div class="center">
+						<div class="col s4 m2">
+							<a href="https://girlswhocode.com/">
+								<img src="images/GWC-logo_2016-white-on-navy.jpg" width="90%">
+							</a>
+						</div>
+						<div class="col s4 m2">
+							<a href="https://www.gracehopper.com/">
+								<img src="images/graceHopperLogo.jpg" width="90%">
+							</a>
+						</div>
+						<div class="col s4 m2">
+							<a href="https://hackbrightacademy.com/">
+								<img src="images/Hackbright_Academy_logo.png" width="90%">
+							</a>
+						</div>
+						<div class="col s4 m2">
+							<a href="http://adadevelopersacademy.org/">
+								<img src="images/adaLogo.png" width="90%">
+							</a>
+						</div>
+						<div class="col s4 m2">
+							<a href="http://www.blackgirlscode.com/">
+								<img src="images/bgc_logo.jpg" width="90%">
+							</a>
+						</div>
+						<div class="col s4 m2">
+							<a href="https://www.girldevelopit.com/">
+								<img src="images/gdiLogo.jpeg" width="90%">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<div class="section green lighten-4">
+				<div class="row container">
+					<br>
+					<div class="col s12 m6 container">
+						<h2>Racial Gap</h2>
+						<p style="padding: 0px; margin: 0px;"><a href="https://www.ncwit.org/blog/did-you-know-demographics-technical-women" class="indigo-text">Source Data</a></p>
+						<h5>Although 30.9% of Americans identify as Black or Hispanic, only <span style="font-style: bold;" class="indigo-text">14%</span> of professionals in computing-related occupations represent underrepresented minorities.</h5>
+					</div>
+
+					<div class="col s12 m6 center">
+						<div id="chart_wrapper" style="
+							position: relative;
+							padding-bottom: 100%;
+							height: 0;
+							overflow:hidden;
+							">
+							<div id="racial_donut" style="
+								position: absolute;
+								top: 0;
+								left: 0;
+								width:100%;
+								height:100%	
+								">
+							</div>
+						</div>
+					</div>
+	
+
+				</div>
+			</div>
 
 		</div>
 
