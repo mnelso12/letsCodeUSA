@@ -5,6 +5,7 @@
 			src="https://code.jquery.com/jquery-3.1.1.min.js"
 			integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 			crossorigin="anonymous"></script>
+
 		<script src="https://use.fontawesome.com/6973ef5c02.js"></script>
 
 
@@ -61,7 +62,7 @@
 			<a href="#" class="left"><h4 style="padding-left: 10px;">Let's Code</h4></a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li><a href="index.html">Home</a></li>
-				<li><a href="">Stats</a></li>
+				<li><a href="stats.html">Stats</a></li>
 				<li><a href="map.html"><i class="fa fa-search" aria-hidden="true"></i> School Search</a></li>
 				<li><a href="">England</a></li>
 				<!-- Dropdown Trigger -->
@@ -72,88 +73,142 @@
 
 
 
+		<!-- Search -->
+		<div class="section indigo lighten-1" >
 
-		<div class="row indigo lighten-1" style="padding: 0px; margin: 0px;">
-			<form class="col s12" id="searchForm" onSubmit="return false;">
-				<div class="input-field white-text">
-					<input id="search" placeholder="search by city, school, or address" type="search" required>
-					<label class="label-icon" for="search"><i class="fa fa-search" aria-hidden="true"></i></label>
-					<i class="material-icons">close</i>
+			<div class="s12">
+				<div class="row">
+					<div class="col s12 m8">
+						<div class="container">
+							<form id="searchForm" onSubmit="return false;">
+								<div class="input-field white-text">
+									<input id="search" placeholder="search by city, school, or address" type="search" required>
+									<label class="label-icon" for="search"><i class="fa fa-search" aria-hidden="true"></i></label>
+									<i class="material-icons">close</i>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<div class="col s12 m4">
+						<a id="searchButton" class="waves-effect waves-light btn">Search</a>	
+						<!--
+						<a id="clearFilters" class="waves-effect waves-light red btn">Reset Filters</a>	
+						-->
+					</div>
 				</div>
-			</form>
+			</div>
+		</div>
+
+
+		<!-- Filters -->
+		<div class="row">
+			<div class="col s12 white">
+
+				<div class="section">
+
+					<div class="col s12 m6 l3">
+						<div class="container">
+							<p class="indigo-text">Class Format</p>
+							<select id="classFormat">
+								<option value="format-0">(Any)</option>
+								<option value="format-1">In School</option>
+								<option value="format-2">Out of School</option>
+							</select>
+							<!--<label>Materialize Select</label>-->
+						</div>
+					</div>
+
+
+
+					<div class="col s12 m6 l3">
+						<div class="container">
+							<p class="indigo-text">Public/Private</p>
+							<div class="input-field">
+								<select id="publicPrivate">
+									<option value="0">(Any)</option>
+									<option value="1">Public / Free</option>
+									<option value="2">Private / Tuition</option>
+								</select>
+								<!--<label>Materialize Select</label>-->
+							</div>
+						</div>
+					</div>
+
+
+					<div class="col s12 m6 l3">
+						<div class="container">
+							<p class="indigo-text">Level(s)</p>
+							<div class="input-field">
+								<select multiple id="level">
+									<option value="0">(Any)</option>
+									<option value="1">Preschool</option>
+									<option value="2">Elementary School</option>
+									<option value="3">Middle School</option>
+									<option value="4">High School</option>
+									<option value="5">College</option>
+									<option value="6">Vocational</option>
+								</select>
+								<!--<label>Materialize Select</label>-->
+							</div>
+						</div>
+					</div>
+
+
+					<div class="col s12 m6 l3">
+						<div class="container">
+							<p class="indigo-text">Language(s)</p>
+							<div class="input-field">
+								<select multiple id="language">
+									<option value="0">(Any)</option>
+									<option value="1">Code.org Code Studio</option>
+									<option value="2">Alice</option>
+									<option value="3">Arduino</option>
+									<option value="4">C++</option>
+									<option value="5">C#</option>
+									<option value="6">CSS</option>
+									<option value="7">HTML</option>
+									<option value="8">Java</option>
+									<option value="9">JavaScript</option>
+									<option value="10">Kodu</option>
+									<option value="11">Logo</option>
+									<option value="12">Mobile Apps</option>
+									<option value="13">Perl</option>
+									<option value="14">PHP</option>
+									<option value="15">Processing</option>
+									<option value="16">Python</option>
+									<option value="17">Racket</option>
+									<option value="18">Ruby</option>
+									<option value="19">Ruby on Rails</option>
+									<option value="20">Scratch</option>
+									<option value="21">Scheme</option>
+									<option value="22">StarLogo Nova</option>
+									<option value="23">WeScheme</option>
+								</select>
+								<!--<label>Materialize Select</label>-->
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
 		</div>
 
 
 
 
+
+
+
 		<div class="row indigo lighten-3" style="margin-bottom: 0px;">
+			<!-- Schools List -->
 			<div class="col s4">
-				<div style="margin-top: 40px;" class="container">
-					<h4 class="indigo-text">Filters</h4>
-					<div class="row white">
-						<div class="col s12">
-							<p>Class Format</p>
-						</div>
-						<div class="input-field col s12">
-							<select>
-								<option value="">Any</option>
-								<option value="1">In School</option>
-								<option value="2">Out of School</option>
-							</select>
-							<!--<label>Materialize Select</label>-->
-						</div>
-					</div>
-					<div class="row white">
-						<div class="col s12">
-							<p>Language(s)</p>
-						</div>
-						<div class="input-field col s12">
-							<select multiple>
-								<option value="0">Code.org Code Studio</option>
-								<option value="1">Alice</option>
-								<option value="2">Arduino</option>
-								<option value="3">C++</option>
-								<option value="4">C#</option>
-								<option value="4">CSS</option>
-								<option value="4">HTML</option>
-								<option value="4">Java</option>
-								<option value="4">JavaScript</option>
-								<option value="4">Kodu</option>
-								<option value="4">Logo</option>
-								<option value="4">Mobile Apps</option>
-								<option value="4">Perl</option>
-								<option value="4">PHP</option>
-								<option value="4">Processing</option>
-								<option value="4">Python</option>
-								<option value="4">Racket</option>
-								<option value="4">Ruby</option>
-								<option value="4">Ruby on Rails</option>
-								<option value="4">Scratch</option>
-								<option value="4">Scheme</option>
-								<option value="4">StarLogo Nova</option>
-								<option value="4">WeScheme</option>
-							</select>
-							<!--<label>Materialize Select</label>-->
-						</div>
-					</div>
-					<div class="row white">
-						<div class="col s12">
-							<p>Public/Private</p>
-						</div>
-						<div class="input-field col s12">
-							<select>
-								<option value="">Any</option>
-								<option value="1">Public / Free</option>
-								<option value="2">Private / Tuition</option>
-							</select>
-							<!--<label>Materialize Select</label>-->
-						</div>
-					</div>
-				</div>
 			</div>
 
 
-			<div id="codeDotOrgAPI" class="col s7">
+		<!-- Map -->
+			<div id="codeDotOrgAPI" class="col s10 offset-s1 l7">
 				<script src="scripts/codeDotOrgAPI.js"></script>
 				<div id="map" style="margin-top: 40px;">
 				</div>
