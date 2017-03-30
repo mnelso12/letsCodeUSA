@@ -9,6 +9,10 @@ html, body {
 	padding: 20px;
 }
 
+.some-padding-top {
+	padding-top: 20px;
+}
+
 .lots-padding {
 	padding: 40px;
 }

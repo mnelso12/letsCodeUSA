@@ -27,6 +27,22 @@ $("#searchButton").click(function(){
 	pressedSearch();
 });
 
+$("#clearFilters").on('click', function(){
+	console.log("clearing");
+
+	console.log($("#classFormat").val());
+	$("#classFormat").val("format-0").change();
+	$('#classFormat').trigger("chosen:updated");
+	$("#classFormat option[value=format-0]").attr('selected', 'selected');
+	$('#classFormat').prop('selectedIndex',0);
+	console.log($("#classFormat").val());
+/*
+	$("#publicPrivate").val("0");
+	$("#level").val("0");
+	$("#language").val("0");
+	*/
+});
+
 $("#searchForm").submit(function() {
 	pressedSearch();
 	return false;
@@ -128,16 +144,12 @@ function getFilters() {
 
 	var selectedLevels = [];
 	for (l in level) {
-		//if (level[l] != "0") { // don't care about "any"
-			selectedLevels.push(levels[parseInt(level[l])]);
-		//}
+		selectedLevels.push(levels[parseInt(level[l])]);
 	}
 
 	var selectedLanguages = [];
 	for (l in language) {
-		//if (language[l] != "0") { // don't care about "any"
-			selectedLanguages.push(languages[parseInt(language[l])]);
-		//}
+		selectedLanguages.push(languages[parseInt(language[l])]);
 	}
 
 	var selectedFormat = formats[classFormat];
@@ -154,7 +166,7 @@ function filterPoints() {
 	var filterFormat = filters[0];
 	var filterMoney = filters[1];
 	var filterLevels = filters[2];
-	var filterLanguages = filters[2];
+	var filterLanguages = filters[3];
 
 	var filteredPoints = []; // filtered schoolData
 
@@ -196,23 +208,21 @@ function filterPoints() {
 		// filter for levels
 		if (filterLevels.length > 0) {
 			for (l of filterLevels) {
-				console.log(levels.indexOf(l));
 				if (levels.indexOf(l) < 0) {
 					isGoodPoint = false;
 				}
 			}
 		}
-/*
+
 		// filter for languages
 		if (filterLanguages.length > 0) {
 			for (l of filterLanguages) {
-				console.log(languages.indexOf(l));
 				if (languages.indexOf(l) < 0) {
 					isGoodPoint = false;
 				}
 			}
 		}
-*/
+
 		if (isGoodPoint == true) {
 			filteredPoints.push(school);
 		}
@@ -246,7 +256,6 @@ function deleteMarkers() {
 
 
 function graphPoints(filteredPoints) {
-	console.log(filterPoints());
 	// clear graph markers
 	deleteMarkers();
 
@@ -276,10 +285,10 @@ function graphPoints(filteredPoints) {
 		var languages = filteredPoints[i].languages.join(", ");
 
 		if (!levels) {
-			levels = "(none)"	
+			levels = "(none listed)"	
 		}
 		if (!languages) {
-			languages = "none"	
+			languages = "(none listed)"	
 		}
 		if (!street) {
 			street = ""	
@@ -296,9 +305,11 @@ function graphPoints(filteredPoints) {
 ;
 		var html = "<h5>" + name + "</h5>"
  				+ "<p>" + street + " " + city + ", " + state + " " + zip + "</p>" 
-				+ "<p>Format: " + format + " - " + format_desc + "</p>"
-				+ "<p>Levels: " + levels + "</p>"
-				+ "<p>Languages: " + languages + "</p>";
+				+ "<p><span style='color: #3f51b5; font-weight: bold;'>Format: </span>" + format + " - " + format_desc + "</p>"
+				+ "<p><span style='color: #3f51b5; font-weight: bold;'>Levels: </span>" + levels + "</p>"
+				+ "<p><span style='color: #3f51b5; font-weight: bold;'>Languages: </span>" + languages + "</p>";
+
+
 		// add an event listener for this marker
 		bindInfoWindow(marker, map, infoWindow, html);
 
