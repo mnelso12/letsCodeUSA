@@ -17,7 +17,7 @@ $(document).ready(function(){
 			Materialize.showStaggeredList($(el));
 		} }
 	];
-
+/*
 	var options = [
 		{selector: '#categories', offset: 50, callback: function(el) {
 			Materialize.showStaggeredList($(el));
@@ -31,10 +31,10 @@ $(document).ready(function(){
 			Materialize.showStaggeredList($(el));
 		} }
 	];
+*/
 
 
-
-	Materialize.scrollFire(options);
+	//Materialize.scrollFire(options);
 	Materialize.scrollFire(stats_options);
 });
 
