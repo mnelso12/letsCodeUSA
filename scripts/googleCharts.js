@@ -7,7 +7,7 @@ function drawChart() {
 
 	var cs_starting = 61321;
 	var college_starting = 50556;
-	var high_school_starting = 0;
+	var high_school_starting = 30000; // http://work.chron.com/average-salary-college-degree-1861.html
 	var cs_lifetime = 1670000;
 	var college_lifetime = 1190000;
 	var high_school_lifetime = 580000;
@@ -21,9 +21,9 @@ function drawChart() {
 
 	var data = google.visualization.arrayToDataTable([
 		['', 'Average Starting Salary', { role: 'style' }, { role: 'annotation' }],
-		['Computer Science Graduate', 61321, cs_style, '$61.3K'],
-		['College Graduate', 50556, college_style, '$50.6K'],
-		['High School Graduate', 0, high_school_style, '$0.0K']
+		['Computer Science Graduate', cs_starting, cs_style, '$61.3K'],
+		['College Graduate', college_starting, college_style, '$50.6K'],
+		['High School Graduate', high_school_starting, high_school_style, '$30.0K']
 	]);
 
 	var lifetime_data = google.visualization.arrayToDataTable([
@@ -38,13 +38,14 @@ function drawChart() {
 	]);
 
 	var indigo_background_color = '#c5cae9';
+	var pink_background_color = '#fce4ec';
 
 	var starting_salary_options = {
 		chart: {
 			title: '',
 			subtitle: '',
 		},
-		backgroundColor: indigo_background_color,
+		backgroundColor: pink_background_color,
 		fontSize: 14,
 		fontName: 'Roboto',
 		legend: {position: 'none'},
@@ -58,7 +59,7 @@ function drawChart() {
 			title: '',
 			subtitle: '',
 		},
-		backgroundColor: indigo_background_color,
+		backgroundColor: pink_background_color,
 		fontSize: 14,
 		fontName: 'Roboto',
 		legend: {position: 'none'},
