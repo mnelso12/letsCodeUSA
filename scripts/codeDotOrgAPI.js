@@ -49,7 +49,7 @@ $("#searchForm").submit(function() {
 });
 
 function pressedSearch() {
-	console.log($("#search").val());
+	//console.log($("#search").val());
 	searchForAddress($("#search").val());
 	var filteredPoints = filterPoints();
 	graphPoints(filteredPoints);
@@ -108,6 +108,7 @@ function makeCorsRequestForAddress(address) {
 // cors request from Code.org
 
 function createCORSRequest(method, url) {
+
 	var xhr = new XMLHttpRequest();
 	if ("withCredentials" in xhr) {
 		xhr.open(method, url, true);
@@ -330,14 +331,13 @@ function bindInfoWindow(marker, map, infowindow, html) {
 	}); 
 } 
 
-
-
-
-
 function makeCorsRequest() {
-	var url = "http://code.org/schools.json";
 
-	var xhr = createCORSRequest('GET', url);
+	var url = "http://cors.io/?http://code.org/schools.json";
+	var shortUrl = "http://code.org/schools.json";
+	var path = "scripts/schools.json";
+
+	var xhr = createCORSRequest('GET', path);
 	if (!xhr) {
 		alert('CORS not supported');
 		return;
@@ -350,7 +350,7 @@ function makeCorsRequest() {
 	};
 
 	xhr.onerror = function() {
-		alert('Woops, there was an error making the request.');
+		console.log('Woops, there was an error making the request.');
 	};
 
 	xhr.send();
