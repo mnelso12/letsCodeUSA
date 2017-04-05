@@ -385,12 +385,15 @@
 
 
 
+
+
 		<!-- Contact Us Modal -->
 		<div id="contactUsModal" class="modal">
 			<div class="modal-content">
 
 				<div class="row">
-					<form class="col s12">
+					<form class="col s12" action="https://formspree.io/madelynnelson2@gmail.com"
+						      method="POST">
 						<div class="row">
 							<h4>Questions? Suggestions?</h4>
 							<h5 class="grey-text text-darken-3">We love hearing from you!</h5>
@@ -419,25 +422,29 @@
 						</div>
 						<div class="row">
 							<div class="input-field col s6">
-								<input id="first_name" type="text" class="validate">
+								<input id="first_name" type="text" class="validate" name="name">
 								<label for="first_name">name</label>
 							</div>
 							<div class="input-field col s6">
-								<input id="email" type="email" class="validate">
+								<input id="email" type="email" class="validate" name="email">
 								<label for="email">email</label>
 							</div>
 						</div>
 						<div class="row">
-							<textarea id="textarea1" class="materialize-textarea"></textarea>
+							<textarea id="textarea1" class="materialize-textarea" name="message"></textarea>
 							<label for="textarea1">your suggestion here</label>
+						</div>
+
+						<div class="modal-footer">
+							<!--<a href="#thankYouModal" class=" modal-action modal-close waves-effect waves-green btn" type="submit" value="Send">Submit</a>
+							-->
+							<input type="submit" value="Send" id="submitButton" class="waves-effect waves-green btn">
+							<input type="hidden" name="_next" value="#thankYouModal"/>
 						</div>
 					</form>
 				</div>
 
 
-			</div>
-			<div class="modal-footer">
-				<a href="#thankYouModal" class=" modal-action modal-close waves-effect waves-green btn">Submit</a>
 			</div>
 		</div>
 
@@ -477,7 +484,11 @@
 					<ul>
 						<li><a class="grey-text text-lighten-3" href="http://fontawesome.io/">Font Awesome</a></li>
 						<li><a class="grey-text text-lighten-3" href="http://materializecss.com/">Materialize</a></li>
+						<!--
 						<li><a class="grey-text text-lighten-3" href="https://jquery.com/">jQuery</a></li>
+						-->
+						<li><a class="grey-text text-lighten-3" href="https://developers.google.com/chart/">Google Charts</a></li>
+						<li><a class="grey-text text-lighten-3" href="https://formspree.io/">Formspree</a></li>
 					</ul>
 				</div>
 			</div>
