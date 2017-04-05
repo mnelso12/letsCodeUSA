@@ -463,30 +463,121 @@
 			<br>
 			<br>
 
-			<footer class="page-footer indigo">
-			<div class="container">
-				<div class="row">
-					<div class="col l6 s12">
-						<h5 class="white-text">You can code too!</h5>
-						<p class="grey-text text-lighten-4">At Let's Code, we fully believe that everyone benefits from the ability to code. The resources are out there. All you need is passion, and we'll drive you in the right direction.</p>
-					</div>
-					<div class="col l4 offset-l2 s12">
-						<p class="white-text">This site was built with:</p>
-						<ul>
-							<li><a class="grey-text text-lighten-3" href="http://fontawesome.io/">Font Awesome</a></li>
-							<li><a class="grey-text text-lighten-3" href="http://materializecss.com/">Materialize</a></li>
-							<li><a class="grey-text text-lighten-3" href="https://jquery.com/">jQuery</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="footer-copyright">
-				<div class="container">
-					<a class="grey-text text-lighten-2" href="https://www.linkedin.com/in/madelyn-nelson-4447a1100/"> © 2017 Madelyn Nelson  | All Rights Reserved </a>
-					<a class="grey-text text-lighten-4 right" href="#!">Suggestions? Contact Us!</a>
-				</div>
-			</div>
-			</footer>
 
-		</body>
-	</html>
+
+		<!-- Contact Us Modal -->
+		<div id="contactUsModal" class="modal">
+			<div class="modal-content">
+
+				<div class="row">
+					<form class="col s12" action="https://formspree.io/madelynnelson2@gmail.com"
+						      method="POST">
+						<div class="row">
+							<h4>Questions? Suggestions?</h4>
+							<h5 class="grey-text text-darken-3">We love hearing from you!</h5>
+							<br>
+							<hr>
+						</div>
+						<div class="row">
+							<h5>I have a...</h5>
+							<br>
+							<p>
+								<input type="checkbox" class="filled-in" id="question"/>
+								<label for="question">question about content</label>
+							</p>
+							<p>
+								<input type="checkbox" class="filled-in" id="addContent"/>
+								<label for="addContent">request to add content</label>
+							</p>
+							<p>
+								<input type="checkbox" class="filled-in" id="press"/>
+								<label for="press">press inquiry</label>
+							</p>
+							<p>
+								<input type="checkbox" class="filled-in" id="other"/>
+								<label for="other">other</label>
+							</p>
+						</div>
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="first_name" type="text" class="validate" name="name">
+								<label for="first_name">name</label>
+							</div>
+							<div class="input-field col s6">
+								<input id="email" type="email" class="validate" name="email">
+								<label for="email">email</label>
+							</div>
+						</div>
+						<div class="row">
+							<textarea id="textarea1" class="materialize-textarea" name="message"></textarea>
+							<label for="textarea1">your suggestion here</label>
+						</div>
+
+						<div class="modal-footer">
+							<!--<a href="#thankYouModal" class=" modal-action modal-close waves-effect waves-green btn" type="submit" value="Send">Submit</a>
+							-->
+							<input type="submit" value="Send" id="submitButton" class="waves-effect waves-green btn">
+							<input type="hidden" name="_next" value="#thankYouModal"/>
+						</div>
+					</form>
+				</div>
+
+
+			</div>
+		</div>
+
+
+
+
+		<!-- Thank You Modal -->
+		<div id="thankYouModal" class="modal">
+			<div class="modal-content">
+				<form class="col s12">
+					<div class="row">
+						<h4>Thanks for your feedback!</h4>
+						<p class="grey-text text-darken-3">We'll get back to you shortly. Until then, check out this inspirational video.</p>
+						<br>
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/dU1xS07N-FA" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<a href="#!" class=" modal-action modal-close waves-effect waves-green btn">Close</a>
+			</div>
+		</div>
+
+
+
+
+
+		<footer class="page-footer indigo">
+		<div class="container">
+			<div class="row">
+				<div class="col l6 s12">
+					<h5 class="white-text">You can code too!</h5>
+					<p class="grey-text text-lighten-4">At Let's Code, we fully believe that everyone benefits from the ability to code. The resources are out there. All you need is passion, and we'll drive you in the right direction.</p>
+				</div>
+				<div class="col l4 offset-l2 s12">
+					<p class="white-text">This site was built with:</p>
+					<ul>
+						<li><a class="grey-text text-lighten-3" href="http://fontawesome.io/">Font Awesome</a></li>
+						<li><a class="grey-text text-lighten-3" href="http://materializecss.com/">Materialize</a></li>
+						<!--
+						<li><a class="grey-text text-lighten-3" href="https://jquery.com/">jQuery</a></li>
+						-->
+						<li><a class="grey-text text-lighten-3" href="https://developers.google.com/chart/">Google Charts</a></li>
+						<li><a class="grey-text text-lighten-3" href="https://formspree.io/">Formspree</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">
+				<a class="grey-text text-lighten-2" href="https://www.linkedin.com/in/madelyn-nelson-4447a1100/">© 2017 Madelyn Nelson  | All Rights Reserved </a>
+				<a class="grey-text text-lighten-4 right" href="#contactUsModal">Suggestions? Contact Us!</a>
+			</div>
+		</div>
+		</footer>
+
+	</body>
+</html>

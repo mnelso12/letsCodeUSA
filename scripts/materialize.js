@@ -1,4 +1,9 @@
 $(document).ready(function(){
+
+	$("#submitButton").click(function() {
+		$('#thankYouModal').modal('open');
+	});
+
 	$('.parallax').parallax();
 	$('.modal').modal();
 	$('select').material_select();
